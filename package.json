@@ -1,0 +1,36 @@
+{
+  "name": "@fav/test.cli",
+  "version": "0.1.0",
+  "description": "Commadn line tool for @fav/test.",
+  "main": "index.js",
+  "files": [],
+  "bin": {
+    "fav-test": "bin/cli.js"
+  },
+  "dependencies": {
+    "@fav/cli.parse-argv": "^0.2.0",
+    "@fav/prop.assign": "^1.0.3",
+    "@fav/test.console-reporter": "^0.1.0",
+    "@fav/test.framework": "^0.2.2"
+  },
+  "devDependencies": {
+    "coveralls": "^3.1.0",
+    "eslint": "^7.10.0",
+    "nyc": "^15.1.0"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "npm run test_lib && npm run test_recur && npm run test_delay",
+    "test_lib": "bin/cli.js test/lib",
+    "test_recur": "bin/cli.js --recursive test/recur",
+    "test_delay": "bin/cli.js --delay test/delay",
+    "coverage": "nyc --reporter=lcov --reporter=text-summary npm test"
+  },
+  "keywords": [
+    "cli",
+    "test",
+    "fav"
+  ],
+  "author": "Takayuki Sato",
+  "license": "MIT"
+}

@@ -1,0 +1,6 @@
+{
+  "color": true,
+  "recursive": true,
+  "retries": 3,
+  "timeout": 5000
+}
