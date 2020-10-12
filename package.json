@@ -3,34 +3,48 @@
   "version": "0.1.0",
   "description": "Commadn line tool for @fav/test.",
   "main": "index.js",
-  "files": [],
+  "files": [
+    "index.js",
+    "lib"
+  ],
   "bin": {
     "fav-test": "bin/cli.js"
   },
   "dependencies": {
     "@fav/cli.parse-argv": "^0.2.0",
+    "@fav/path.parse": "^0.9.0",
     "@fav/prop.assign": "^1.0.3",
-    "@fav/test.console-reporter": "^0.1.0",
+    "@fav/test.console-reporter": "^0.2.0",
     "@fav/test.framework": "^0.2.2"
   },
   "devDependencies": {
     "coveralls": "^3.1.0",
-    "eslint": "^7.10.0",
+    "eslint": "^7.11.0",
     "nyc": "^15.1.0"
   },
   "scripts": {
     "lint": "eslint .",
     "test": "npm run test_lib && npm run test_recur && npm run test_delay",
-    "test_lib": "bin/cli.js test/lib",
-    "test_recur": "bin/cli.js --recursive test/recur",
-    "test_delay": "bin/cli.js --delay test/delay",
-    "coverage": "nyc --reporter=lcov --reporter=text-summary npm test"
+    "test_lib": "node bin/cli.js test/lib",
+    "test_recur": "node bin/cli.js --recursive test/recur",
+    "test_delay": "node bin/cli.js --delay test/delay",
+    "coverage": "nyc --reporter=lcov --reporter=text-summary npm test",
+    "coveralls": "nyc --reporter=text-lcov npm test | coveralls",
+    "build": "npm run lint && npm run coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sttk/fav-test.cli.git"
   },
   "keywords": [
     "cli",
     "test",
     "fav"
   ],
+  "bugs": {
+    "url": "https://github.com/sttk/fav-test.cli/issues"
+  },
+  "homepage": "https://github.com/sttk/fav-test.cli#readme",
   "author": "Takayuki Sato",
   "license": "MIT"
 }

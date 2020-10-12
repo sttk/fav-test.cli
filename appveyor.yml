@@ -25,24 +25,26 @@ for:
         - image: Visual Studio 2019
     install:
       - ps: Install-Product node $env:nodejs_version
-      - ps: if ($env:nodejs_version -eq '5') { npm i -g npm@4 }
+      - ps: if ([int]$env:nodejs_version -eq 5) { npm i -g npm@4 }
       - cmd: npm install
     test_script:
       - cmd: node --version
       - cmd: npm --version
+      - ps: if ([int]$env:nodejs_version -ge 10) { npm run lint }
       - cmd: npm test
 
   - matrix:
       except:
         - image: Visual Studio 2019
     install:
-      - ps: nvm install $nodejs_version
-      - ps: if [ $nodejs_version -eq 5 ]; then npm i -g npm@4; fi
+      - sh: nvm install $nodejs_version
+      - sh: if [ $nodejs_version -eq 5 ]; then npm i -g npm@4; fi
       - sh: npm install
     test_script:
-      - cmd: node --version
-      - cmd: npm --version
-      - cmd: npm test
+      - sh: node --version
+      - sh: npm --version
+      - sh: if [ $nodejs_version -ge 10 ]; then npm run lint; fi
+      - sh: npm test
 
 build: off
 

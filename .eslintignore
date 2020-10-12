@@ -1,4 +1,3 @@
 coverage/
-web/
-test/web/
-test/mocha-samples/
+test/delay
+test/recur

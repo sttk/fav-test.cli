@@ -7,11 +7,10 @@ var findupPackageDir = require('../../lib/findup-package-dir');
 describe('lib: findup-package-dir', function() {
 
   var pkgDir = path.resolve(__dirname, '../..');
-  var pkgRelDir = path.relative(pkgDir, process.cwd());
   var fixturesDir = path.resolve(__dirname, '../fixtures/findup-package-dir');
 
   it('No ancestor package dir', function() {
-    assert.equal(findupPackageDir("/aaa/bbb"), null);
+    assert.equal(findupPackageDir('/aaa/bbb'), null);
   });
 
   it('Start from package dir', function() {
