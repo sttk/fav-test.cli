@@ -19,12 +19,17 @@ node_js:
 
 before_install:
   - if [ $(echo "${TRAVIS_NODE_VERSION}" | cut -d'.' -f1) -eq 5 ]; then
-      npm i -g npm@4
+      npm i -g npm@4;
+    fi
+
+before_script:
+  - if [ $(echo "${TRAVIS_NODE_VERSION}" | cut -d'.' -f1) -ge 10 ]; then
+      npm run lint;
     fi
 
 after_success:
   - if [ $(echo "${TRAVIS_NODE_VERSION}" | cut -d'.' -f1) -ge 6 ]; then
-      npm run coveralls
+      npm run coveralls;
     fi
 
 os:

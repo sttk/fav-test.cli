@@ -3,9 +3,7 @@
 var Framework = require('@fav/test.framework');
 var Reporter = require('@fav/test.console-reporter');
 var parseArgv = require('@fav/cli.parse-argv');
-var getColorDepth = require('@fav/cli.get-color-depth');
 var assign = require('@fav/prop.assign');
-var path = require('path');
 
 var listJsFiles = require('./lib/list-js-files');
 var cliOptions = require('./lib/cli-options');
