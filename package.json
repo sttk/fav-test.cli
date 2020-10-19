@@ -24,10 +24,11 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "npm run test_lib && npm run test_recur && npm run test_delay",
+    "test": "npm run test_lib && npm run test_recur && npm run test_delay && npm run test_defdir",
     "test_lib": "node bin/cli.js test/lib",
     "test_recur": "node bin/cli.js --recursive test/recur",
     "test_delay": "node bin/cli.js --delay test/delay",
+    "test_defdir": "cd test/fixtures/default-test-dir && node ../../../bin/cli.js",
     "coverage": "nyc --reporter=lcov --reporter=text-summary npm test",
     "coveralls": "nyc --reporter=text-lcov npm test | coveralls",
     "build": "npm run lint && npm run coverage"

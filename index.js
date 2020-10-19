@@ -4,10 +4,12 @@ var Framework = require('@fav/test.framework');
 var Reporter = require('@fav/test.console-reporter');
 var parseArgv = require('@fav/cli.parse-argv');
 var assign = require('@fav/prop.assign');
+var path = require('path');
 
 var listJsFiles = require('./lib/list-js-files');
 var cliOptions = require('./lib/cli-options');
 var getProjectConfigs = require('./lib/project-configs');
+var findupProjectDir = require('./lib/findup-project-dir');
 
 function launch(appName) {
   var configs = getProjectConfigs('.' + appName, __dirname, process.cwd());
@@ -57,8 +59,12 @@ function launch(appName) {
     global.run = run;
   }
 
-  /* istanbul ignore next */
-  var files = argv.args.length ? argv.args : ['test'];
+  var files = argv.args;
+  if (!files.length) {
+    var pkgDir = findupProjectDir(__dirname, process.cwd());
+    var testDir = path.join(pkgDir, 'test');
+    files = [testDir];
+  }
   files.forEach(function(fileOrDir) {
     listJsFiles(fileOrDir, configs.recursive).forEach(require);
   });
